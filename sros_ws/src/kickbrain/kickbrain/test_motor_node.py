@@ -119,7 +119,7 @@ class TestMotorNode(Node):
         
         msg = BotState()
         msg.active_paths = self.last_feedback.active_paths
-        msg.devices = self.last_feedback.devices
+        msg.device_ids = self.last_feedback.device_ids
         msg.voltage = self.voltage
         #TODO: Add velocity to BotState definition
         

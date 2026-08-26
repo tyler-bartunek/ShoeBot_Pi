@@ -32,6 +32,8 @@ sros_ws/install/
 sros_ws/log/
 sros_ws/launch/core
 
+sros_ws/core
+
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.

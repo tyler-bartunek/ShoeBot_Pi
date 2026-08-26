@@ -23,6 +23,7 @@ def start_stack():
         if _stack_starting:
             return  # already in progress, ignore this trigger
         _stack_starting = True
+    print("Starting docker")
     subprocess.Popen(["sh", "../purge_docker.sh"])
     subprocess.Popen(["sh", "../configure_docker.sh"])
     
@@ -98,8 +99,8 @@ def main():
     info = register_zeroconf(zc)
     
     try:
+        start_stack()
         while True:
-            serve_trigger()
             sleep(0.1)  # Keep the program running to maintain the service registration, replace with 
     except KeyboardInterrupt:
         pass

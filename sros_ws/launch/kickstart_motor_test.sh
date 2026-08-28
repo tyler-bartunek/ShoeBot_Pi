@@ -8,7 +8,7 @@ WORKSPACE="/root/colcon_ws"
 source /ros_entrypoint.sh
 
 #Check if the kickbot_interfaces, kickbrain, and spi_driver packages are built, if not build them, then launch the test nodes.
-if [ ! -d "$WORKSPACE/build/kickbot_interfaces" ] || [ ! -d "$WORKSPACE/build/kickbrain" ] || [ ! -d "$WORKSPACE/build/spi_driver" ] || [! -d "$WORKSPACE/build/kick_configs"]; then
+if [ ! -d "$WORKSPACE/build/kickbot_interfaces" ] || [ ! -d "$WORKSPACE/build/kickbrain" ] || [ ! -d "$WORKSPACE/build/spi_driver" ] || [ ! -d "$WORKSPACE/build/kick_configs" ]; then
     echo "One or more required packages not built, building now..."
     cd ../
     colcon build --packages-select kickbot_interfaces kickbrain spi_driver --executor sequential

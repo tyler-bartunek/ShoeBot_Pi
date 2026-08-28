@@ -3,7 +3,7 @@ import rclpy
 from rclpy.node import Node
 
 #Topic message formats
-from kickbot_interfaces.msg import ActuatorCmdFrame, BusState
+from kickbot_interfaces.msg import ActuatorCmdFrame, BusState, BotState
 from geometry_msgs.msg import Twist
 
 #Service message formats
@@ -118,10 +118,11 @@ class TestMotorNode(Node):
     def state_update(self):
         
         msg = BotState()
-        msg.active_paths = self.last_feedback.active_paths
-        msg.device_ids = self.last_feedback.device_ids
-        msg.voltage = self.voltage
-        #TODO: Add velocity to BotState definition
+        if self.last_feedback:
+            msg.active_paths = self.last_feedback.active_paths
+            msg.device_ids = self.last_feedback.device_ids
+            msg.voltage = 3.3 #Hard-coded for now
+            #TODO: Add velocity to BotState definition
         
         self.bot_state_publisher.publish(msg)
            

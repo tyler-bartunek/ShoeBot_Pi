@@ -7,8 +7,9 @@ services:
       dockerfile: Dockerfile
     image: kickbot
     container_name: Footlocker
-    stdin_open: true   # -i
-    tty: true           # -t
+    network_mode: host
+    stdin_open: true
+    tty: true
     volumes:
       - /home/tyler/Documents/ShoeBot_Pi/sros_ws:/root/colcon_ws
     devices:
@@ -16,18 +17,10 @@ services:
       - /dev/spidev0.1:/dev/spidev0.1
       - /dev/gpiomem:/dev/gpiomem
       - /dev/gpiochip0:/dev/gpiochip0
-
-
-    #Temporary for dev: sleep infinity
-    # entrypoint: ["sh", "-c", "sleep infinity"]
-
-    #Temporarily suppress for dev -> Consider adding --break-system-packages to pip install commmand if we get errors about pip
     command: >
       bash -c "source /ros_entrypoint.sh &&
                cd /root/colcon_ws &&
                colcon build --executor sequential &&
                source install/setup.bash &&
-               (ros2 launch rosbridge_server rosbridge_websocket_launch.xml &) &&
-               sleep 5 &&
-               cd ./launch &&
+               cd launch &&
                bash kickstart_motor_test.sh"

@@ -40,7 +40,7 @@ class BusHubNode(Node):
 
         #Create a timer and timer callback that polls each device periodically
         self.bus_publisher = self.create_publisher(BusState, "/bus_state", 10)
-        timer_freq = 500. #Hz
+        timer_freq = 100. #Hz
         timer_period = 1. / timer_freq # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
 
